@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AutosModule } from './domain/autos/autos.module';
+import { ServiciosModule } from './domain/servicios/servicios.module';
 import { UsuariosModule } from './domain/usuarios/usuarios.module';
 
 @Module({
@@ -21,7 +22,8 @@ import { UsuariosModule } from './domain/usuarios/usuarios.module';
       logger: 'file',
     }),
   UsuariosModule,
-  AutosModule],
+  AutosModule,
+  ServiciosModule],
   controllers: [AppController],
   providers: [AppService],
 })
