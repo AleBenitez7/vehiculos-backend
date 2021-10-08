@@ -25,6 +25,10 @@ export class UsuariosDto {
 
     @Type(()=> Date)
     @IsOptional()
-    fechaCreacion: Date;
+    fecha_creacion: Date;
+
+    @Type(()=> Date)
+    @IsOptional()
+    fecha_alteracion: Date;
 }
 

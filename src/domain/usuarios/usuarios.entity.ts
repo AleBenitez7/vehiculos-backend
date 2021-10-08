@@ -1,6 +1,8 @@
 import { Status } from 'src/enums/status.enum';
 import { TipoUsuario } from 'src/enums/TipoUsuario.enum';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Agendamiento } from '../agendamientos/agendamientos.entity';
+import { Servicios } from '../servicios/servicios.entity';
 
 @Entity()
 export class Usuarios {
@@ -23,6 +25,15 @@ export class Usuarios {
     status: Status;
     
     @Column()
-    fechaCreacion: Date;
+    fecha_creacion: Date;
+
+    @Column()
+    fecha_alteracion: Date;
+
+    @OneToMany(() => Servicios, servicio => servicio.usuario,{ onDelete: "CASCADE" })
+    servicios: Servicios[];
+
+    @OneToMany(() => Agendamiento, agendamiento => agendamiento.usuario,{ onDelete: "CASCADE" })
+    agendamiento: Agendamiento[];
 }
 

@@ -1,5 +1,8 @@
-import { TipoServicio } from "src/enums/TipoServicio";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { TipoServicio } from "src/enums/TipoServicio.enum";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Autos } from "../autos/autos.entity";
+import { TiposServicios } from "../tipos-servicios/tipos-servicios.entity";
+import { Usuarios } from "../usuarios/usuarios.entity";
 
 @Entity()
 export class Servicios {
@@ -8,20 +11,29 @@ export class Servicios {
     id:number;
 
     @Column()
-    tipo_servicio: TipoServicio;
+    fecha_creacion: Date;
 
     @Column()
-    valor_servicio: number;
-
-    @Column()
-    fecha_servicio: Date;
-
-    @Column()
-    km_inicial: number;
-
-    @Column()
-    km_final: number;
+    fecha_alteracion: Date;
 
     @Column()
     descripcion:string;
+
+    @ManyToOne(() => TiposServicios, tipoServicio => tipoServicio.servicios,{
+        eager: true,
+        onDelete: "CASCADE"
+    })
+    tipo_servicio:string;
+
+    @ManyToOne(() => Autos, auto => auto.servicios,{
+        eager: true,
+        onDelete: "CASCADE"
+    })
+    auto:Autos;
+
+    @ManyToOne(() => Usuarios, usuario => usuario.servicios,{
+        eager: true,
+        onDelete: "CASCADE"
+    })
+    usuario :Usuarios;
 }

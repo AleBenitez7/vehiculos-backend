@@ -1,29 +1,22 @@
 import { Type } from "class-transformer";
-import { IsDecimal, IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
-import { TipoServicio } from "src/enums/TipoServicio";
+import { IsNotEmpty, IsObject, IsOptional, IsString } from "class-validator";
+import { Autos } from "../autos/autos.entity";
+import { Usuarios } from "../usuarios/usuarios.entity";
  
 export class ServiciosDto {
-    
-    @IsEnum(TipoServicio,{message: 'Opcion no valida!'})
-    tipo_servicio: TipoServicio;
-
-    @IsNumber()
-    @IsOptional()
-    valor_servicio: number;
 
     @Type(()=> Date)
     @IsOptional()
-    fecha_servicio: Date;
+    fecha_creacion: Date;
 
-    @IsNumber()
+    @Type(()=> Date)
     @IsOptional()
-    km_inicial: number;
-
-    @IsNumber()
-    @IsOptional()
-    km_final: number;
+    fecha_alteracion: Date;
 
     @IsString()
     @IsOptional()
     descripcion: string;
+    
+    @IsString()
+    tipo_servicio:string;
 }
