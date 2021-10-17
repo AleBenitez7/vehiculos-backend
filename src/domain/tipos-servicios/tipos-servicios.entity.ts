@@ -9,17 +9,17 @@ export class TiposServicios {
     id:number;
 
     @Column()
-    descripcion: string;
-
-    @Column()
     @IsOptional()
     fecha_creacion: Date;
 
     @Column()
     @IsOptional()
     fecha_alteracion: Date;
+
+    @Column()
+    descripcion: string;
     
-    @OneToMany(() => Servicios, servicio => servicio.tipo_servicio,{ onDelete: "CASCADE"})
+    @OneToMany(() => Servicios, servicio => servicio.tiposservicio,{ onDelete: "CASCADE"})
     servicios: Servicios;   
     
     @OneToMany(() => Agendamiento, agendamiento => agendamiento.tiposservicio,{ onDelete: "CASCADE" })

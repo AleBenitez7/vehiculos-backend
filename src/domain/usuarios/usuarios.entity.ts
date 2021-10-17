@@ -10,6 +10,15 @@ export class Usuarios {
     id:number;
 
     @Column()
+    fecha_creacion: Date;
+
+    @Column()
+    fecha_alteracion: Date;
+
+    @Column()
+    descripcion: string;
+    
+    @Column()
     nombre: string;
     
     @Column()
@@ -24,12 +33,6 @@ export class Usuarios {
     @Column()
     status: Status;
     
-    @Column()
-    fecha_creacion: Date;
-
-    @Column()
-    fecha_alteracion: Date;
-
     @OneToMany(() => Servicios, servicio => servicio.usuario,{ onDelete: "CASCADE" })
     servicios: Servicios[];
 

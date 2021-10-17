@@ -5,6 +5,18 @@ import { Status } from "src/enums/status.enum";
 
 export class AutosDto{
 
+    @Type(()=> Date)
+    @IsOptional()
+    fecha_creacion: Date;
+
+    @Type(()=> Date)
+    @IsOptional()
+    fecha_alteracion: Date;
+
+    @IsString()
+    @IsOptional()
+    descripcion: string;
+
     @IsString()
     @IsOptional()
     chapa: string;
@@ -21,7 +33,7 @@ export class AutosDto{
     @IsOptional()
     modelo: string;
 
-    @IsDecimal()
+    @IsNumber()
     @IsOptional()
     kilometraje: number;
 
@@ -33,18 +45,6 @@ export class AutosDto{
     @IsOptional()
     anio_fabricacion: number; 
     
-    @IsString()
-    @IsOptional()
-    descripcion: string;
-
     @IsEnum(Disponibilidad, {message: 'Opción invalida'})
     disponibilidad: Disponibilidad;
-
-    @Type(()=> Date)
-    @IsOptional()
-    fecha_creacion: Date;
-
-    @Type(()=> Date)
-    @IsOptional()
-    fecha_alteracion: Date;
 }

@@ -5,24 +5,6 @@ import { Type } from "class-transformer";
 
 export class UsuariosDto {
 
-    @Length(5)
-    @IsString()
-    nombre: string;
-    
-    @IsString()
-    @IsOptional()
-    login: string;
-
-    @IsString()
-    @IsOptional()
-    contrasena: string;
-
-    @IsEnum (TipoUsuario, {message: 'Opcion invalida'})
-    tipo_usuario: TipoUsuario;
-
-    @IsEnum(Status)
-    status:Status;
-
     @Type(()=> Date)
     @IsOptional()
     fecha_creacion: Date;
@@ -30,5 +12,25 @@ export class UsuariosDto {
     @Type(()=> Date)
     @IsOptional()
     fecha_alteracion: Date;
+
+    @IsString()
+    @IsOptional()
+    descripcion: string;
+
+    @Length(5)
+    @IsString()
+    nombre: string;
+    
+    @IsString()
+    login: string;
+
+    @IsString()
+    contrasena: string;
+
+    @IsEnum (TipoUsuario, {message: 'Opcion invalida'})
+    tipo_usuario: TipoUsuario;
+
+    @IsEnum(Status)
+    status:Status;
 }
 

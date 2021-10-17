@@ -7,6 +7,15 @@ import { Servicios } from "../servicios/servicios.entity";
 export class Autos{
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column()
+    fecha_creacion: Date;  
+    
+    @Column()
+    fecha_alteracion: Date;
+
+    @Column()
+    descripcion: string;
       
     @Column()
     chapa: string;
@@ -30,16 +39,7 @@ export class Autos{
     anio_fabricacion: number;
 
     @Column()
-    descripcion: string;
-
-    @Column()
     disponibilidad:Disponibilidad;
-
-    @Column()
-    fecha_creacion: Date;  
-    
-    @Column()
-    fecha_alteracion: Date;
 
     @OneToMany(() => Servicios, servicio => servicio.auto,{ onDelete: "CASCADE" })
     servicios: Servicios[];
