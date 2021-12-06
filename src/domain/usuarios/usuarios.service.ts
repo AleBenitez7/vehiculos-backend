@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ChangeUserPassDto } from './changeUserPass.dto';
 import { UsuariosDto } from './usuarios.dto';
 import { Usuarios } from './usuarios.entity';
 
@@ -37,5 +38,20 @@ export class UsuariosService {
     
     async deleteOne(id: number) {
         return await this.repository.delete(id);
+    }
+
+    //
+    async getUserByLogin(login:string){
+        return await this.repository.findOne({login});
+    }
+
+    async changePassword(dto:ChangeUserPassDto){
+        const user = await this.repository.findOne({login:dto.login});
+        if(user && await user.validatePassword(dto.password)){
+            const editUser = Object.assign(user,{contrasena:dto.newPassword});
+            return await this.repository.save(editUser);
+        }else{
+            throw new NotFoundException('User doesn´t exist or password incorrect');
+        }
     }
 }

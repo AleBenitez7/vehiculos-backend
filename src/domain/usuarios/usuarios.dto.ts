@@ -5,7 +5,7 @@ import { Type } from "class-transformer";
 
 export class UsuariosDto {
 
-    @Type(()=> Date)
+    @Type(()=> Date)                           
     @IsOptional()
     fecha_creacion: Date;
 
@@ -25,7 +25,7 @@ export class UsuariosDto {
     login: string;
 
     @IsString()
-    contrasena: string;
+    password: string;
 
     @IsEnum (TipoUsuario, {message: 'Opcion invalida'})
     tipo_usuario: TipoUsuario;

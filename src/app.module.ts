@@ -7,10 +7,15 @@ import { ServiciosModule } from './domain/servicios/servicios.module';
 import { UsuariosModule } from './domain/usuarios/usuarios.module';
 import { TiposServiciosModule } from './domain/tipos-servicios/tipos-servicios.module';
 import { AgendamientosModule } from './domain/agendamientos/agendamientos.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath:'.env'
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -28,7 +33,8 @@ import { AgendamientosModule } from './domain/agendamientos/agendamientos.module
   AutosModule,
   ServiciosModule,
   TiposServiciosModule,
-  AgendamientosModule],
+  AgendamientosModule,
+  AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -8,7 +8,16 @@ export const initSwagger = (app: INestApplication) => {
     .setDescription(
       'Datapar',
     )
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('/docs', app, document);
+  const cors =require("cors")
+  app.enableCors
+  app.use(
+    cors({
+      origin :"*",
+      credentials:"true",
+    })
+  )
 };
